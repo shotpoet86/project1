@@ -1,33 +1,41 @@
 <template>
   <body>
   <header>
-    <h1>Vue Course Goals</h1>
+    <h1>{{ outputGoal() }}</h1>
   </header>
   <section id="user-goal">
-    <h2>My Course Goal</h2>
-    <p></p>
+    <h2>{{ myCourseGoal }}</h2>
+    <p><a v-bind:href="vueLearnLink">Learn Vue</a></p>
   </section>
   </body>
 </template>
 
 <script>
 export default {
+  name: 'App',
   data() {
     return {
-      myHello: 'Hello'
+      courseGoalA: 'Vue Course Goal',
+      courseGoalB: 'Fail miserably',
+      myCourseGoal: 'My Course Goal',
+      vueLearnLink: 'https://vuejs.org/api/built-in-directives.html#v-on',
+      vueMessage: 'hello from vue'
     };
+  },
+  methods: {
+    outputGoal: function () {
+      const randomNumber = Math.random();
+      if (randomNumber < 0.3) {
+        console.log(randomNumber);
+        return this.courseGoalA;
+      } else return this.courseGoalB;
+    }
   }
 };
+
 </script>
 
 <style>
-app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  text-align: center;
-  margin-top: 60px;
-  color: green;
-  }
-
 {
   box-sizing: border-box
 ;
