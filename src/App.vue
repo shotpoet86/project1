@@ -7,6 +7,9 @@
     <h2>{{ myCourseGoal }}</h2>
     <p><a v-bind:href="vueLearnLink">Learn Vue</a></p>
   </section>
+  <button id="user-goal" v-on:click="resetInput">My Button</button>
+  <input type="text" v-model.lazy="name" placeholder="enter some text">
+  <h1>{{ name }}</h1>
   </body>
 </template>
 
@@ -19,16 +22,23 @@ export default {
       courseGoalB: 'Fail miserably',
       myCourseGoal: 'My Course Goal',
       vueLearnLink: 'https://vuejs.org/api/built-in-directives.html#v-on',
-      vueMessage: 'hello from vue'
+      vueMessage: 'hello from vue',
+      name: ''
     };
   },
   methods: {
     outputGoal: function () {
       const randomNumber = Math.random();
       if (randomNumber < 0.3) {
-        console.log(randomNumber);
         return this.courseGoalA;
       } else return this.courseGoalB;
+    },
+    //v-model replaces the need for this function
+    /* setName(event) {
+       this.name = event.target.value;
+     },*/
+    resetInput() {
+      this.name = '';
     }
   }
 };
@@ -115,6 +125,5 @@ header {
   border-color: #ec3169;
   box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.26);
   }
-
 
 </style>
